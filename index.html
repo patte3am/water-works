@@ -4,23 +4,62 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Water Works</title>
+    <meta
+      name="description"
+      content="Play Water Works, a quick game inspired by charity: water. Collect clean water and learn about the mission to bring safe drinking water to everyone."
+    />
+    <meta name="theme-color" content="#ffc907" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Nunito+Sans:wght@700;800;900&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="page-shell">
-      <header class="topbar" aria-label="charity water branding">
-        <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water" />
+      <header class="topbar">
+        <a
+          class="brand-link"
+          href="https://www.charitywater.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Visit charity: water (opens in a new tab)"
+        >
+          <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water" />
+        </a>
+        <a
+          class="donate-link"
+          href="https://www.charitywater.org/donate"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Donate</a>
       </header>
 
       <main class="game-card">
         <div class="headline-wrap">
-          <p class="eyebrow">Every Drop Makes a Difference</p>
+          <p class="eyebrow">Every drop makes a difference</p>
           <h1>Water Works</h1>
         </div>
 
-        <p class="game-instructions">Collect clean water before the timer runs out. Reach 20 points to win!</p>
+        <p id="game-instructions" class="game-instructions">
+          Collect clean water before time runs out. Avoid polluted water and reach your goal!
+        </p>
 
-        <div class="stats" aria-label="game stats">
+        <div class="difficulty-control">
+          <label for="difficulty">Choose your challenge</label>
+          <select id="difficulty" name="difficulty" aria-describedby="difficulty-help">
+            <option value="easy">Easy - 45 seconds, 15 points</option>
+            <option value="normal" selected>Normal - 30 seconds, 20 points</option>
+            <option value="hard">Hard - 20 seconds, 25 points</option>
+          </select>
+          <span id="difficulty-help" class="visually-hidden">
+            Difficulty cannot be changed while a game is in progress.
+          </span>
+        </div>
+
+        <div class="stats" aria-label="Game stats">
           <div class="stat-chip">
             <span class="label">Score</span>
             <strong id="score">0</strong>
@@ -31,22 +70,53 @@
           </div>
           <div class="stat-chip time-chip" id="time-chip">
             <span class="label">Time Left</span>
-            <strong id="timer">30s</strong>
+            <strong id="timer" aria-live="off">30s</strong>
           </div>
         </div>
 
-        <div id="game-status" class="game-status" aria-live="polite">Ready to play</div>
+        <div class="goal-progress">
+          <div
+            id="goal-progress"
+            class="goal-progress-track"
+            role="progressbar"
+            aria-label="Progress toward the clean water goal"
+            aria-valuemin="0"
+            aria-valuemax="20"
+            aria-valuenow="0"
+          >
+            <span id="goal-progress-fill" class="goal-progress-fill"></span>
+          </div>
+        </div>
+
+        <div id="game-status" class="game-status" role="status" aria-live="polite">Ready to play</div>
+        <div id="milestone-message" class="milestone-message" role="status" aria-live="polite" aria-atomic="true"></div>
         <div id="message-container" class="message-container" aria-live="polite" hidden></div>
 
-        <div class="game-grid" aria-label="Water game board"></div>
+        <div class="game-grid" role="group" aria-label="Water game board"></div>
 
         <div class="button-row">
           <button id="start-game" class="primary-btn" type="button">Start Game</button>
           <button id="reset-game" class="secondary-btn" type="button">Reset Game</button>
+          <button
+            id="mute-toggle"
+            class="secondary-btn mute-btn"
+            type="button"
+            aria-pressed="false"
+            aria-label="Mute game sounds"
+          >Sound: On</button>
         </div>
 
         <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
       </main>
+
+      <footer class="page-footer">
+        <p>Clean water changes everything.</p>
+        <a
+          href="https://www.charitywater.org/our-impact"
+          target="_blank"
+          rel="noopener noreferrer"
+        >Learn about charity: water's impact <span aria-hidden="true">↗</span></a>
+      </footer>
     </div>
 
     <script src="script.js"></script>
