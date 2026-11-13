@@ -1,4 +1,5 @@
 // Water Works - Project 6 development
+// Keep each mode's goal and pacing together so the game stays consistent.
 const DIFFICULTIES = {
   easy: {
     name: 'Easy',
@@ -206,6 +207,7 @@ function playSound(effect) {
     audioContext.resume();
   }
 
+  // Synthesize short notes locally so no sound files need to be downloaded.
   const sounds = {
     collect: { notes: [659, 880], wave: 'sine', duration: 0.09 },
     polluted: { notes: [220, 165], wave: 'sawtooth', duration: 0.12 },
@@ -236,6 +238,7 @@ function playSound(effect) {
 }
 
 function updateMilestones() {
+  // Round fractional targets up to the next whole point and announce each once.
   const reached = MILESTONES.find((milestone) => (
     score >= Math.ceil(getDifficulty().goal * milestone.percent / 100)
     && !milestonesShown.has(milestone.percent)
@@ -291,6 +294,7 @@ function createItem(cell, type) {
   cell.appendChild(item);
   requestAnimationFrame(() => item.classList.add('active'));
 
+  // Remove untouched drops after their mode-specific lifetime.
   const expiryTimer = setTimeout(() => {
     activeItems.delete(item);
     item.remove();
