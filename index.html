@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Water Works</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="topbar" aria-label="charity water branding">
+        <img class="brand-logo" src="img/cw_logo_horizontal.png" alt="charity: water" />
+      </header>
+
+      <main class="game-card">
+        <div class="headline-wrap">
+          <p class="eyebrow">Every Drop Makes a Difference</p>
+          <h1>Water Works</h1>
+        </div>
+
+        <p class="game-instructions">Collect clean water before the timer runs out. Reach 20 points to win!</p>
+
+        <div class="stats" aria-label="game stats">
+          <div class="stat-chip">
+            <span class="label">Score</span>
+            <strong id="score">0</strong>
+          </div>
+          <div class="stat-chip">
+            <span class="label">Goal</span>
+            <strong id="goal">20</strong>
+          </div>
+          <div class="stat-chip time-chip" id="time-chip">
+            <span class="label">Time Left</span>
+            <strong id="timer">30s</strong>
+          </div>
+        </div>
+
+        <div id="game-status" class="game-status" aria-live="polite">Ready to play</div>
+        <div id="message-container" class="message-container" aria-live="polite" hidden></div>
+
+        <div class="game-grid" aria-label="Water game board"></div>
+
+        <div class="button-row">
+          <button id="start-game" class="primary-btn" type="button">Start Game</button>
+          <button id="reset-game" class="secondary-btn" type="button">Reset Game</button>
+        </div>
+
+        <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
